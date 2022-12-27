@@ -41,8 +41,8 @@ const updateuser=async(req,res)=>{
 }
 
 
-module.exports={updateuser}
+module.exports={updateuser,creatuser,getusers}
 
-module.exports={creatuser}
+// module.exports={creatuser}
 
-module.exports={getusers}
+// module.exports={getusers}

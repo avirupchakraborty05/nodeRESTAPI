@@ -34,8 +34,8 @@ const updatefood =async(req,res)=>{
 }
 
 
-module.exports={updatefood}
+module.exports={updatefood,creatfood,getfood}
 
-module.exports={creatfood}
+// module.exports={creatfood}
 
-module.exports={getfood}
+// module.exports={getfood}
