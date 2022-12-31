@@ -15,5 +15,19 @@ const creatmovie = async(req,res,next)=>{
     return res.send({"message":"added successfully"})
 }
 
+const updatemovie = async(req,res,next)=>{
+    const id = req.params.id;
+    const {name,director} = req.body;
+    console.log(id)
+    if(!name && !director){
+        res.status(401).send({message:"not available"})
+    }
+    let payload = {
+        if (name){
+            payload
+        }
+    }
+}
 
-module.exports={creatmovie}
+
+module.exports={creatmovie,updatemovie}
