@@ -13,7 +13,7 @@ const {creatuser} = require("../Controllers/userController")
 const {updateuser} = require("../Controllers/userController")
 const {creatmovie} = require("../Controllers/movieController")
 const {updatemovie} = require("../Controllers/movieController")
-const {getmovie} = require("../Controllers/movieController")
+const {getmovies} = require("../Controllers/movieController")
 const usertable = [
     {"name":"avirup",email:"avirup@gmail.com", password:"Asirup@1999"},
     {"name":"Shankhadeep",email:"Shankha@gmai.com",password:"ERD@1999" }
@@ -78,5 +78,5 @@ app.delete("/api/food/delete/:id",async(req,res)=>{
 
 app.post("/api/movie/create",creatmovie)
 app.post("/api/movie/update/:id",updatemovie)
-app.post("/api/movie",getmovie)
+app.post("/api/movie",getmovies)
 module.exports = app;

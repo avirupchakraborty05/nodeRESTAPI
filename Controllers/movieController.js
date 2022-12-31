@@ -29,11 +29,11 @@ const updatemovie = async(req,res,next)=>{
     }
 }
 
-const getmovie = async(req,res,next)=>{
+const getmovies = async(req,res,next)=>{
     client.connectToDatabase()
     const stages = await client.client.db("Store").collection("Movies").find().toArray();
     return res.send({data:stages})
 }
 
 
-module.exports={creatmovie,updatemovie,getmovie}
+module.exports={creatmovie,updatemovie,getmovies}
