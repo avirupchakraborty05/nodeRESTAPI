@@ -11,6 +11,7 @@ const {creatfood} = require("../Controllers/foodController")
 const {updatefood} = require("../Controllers/foodController")
 const {creatuser} = require("../Controllers/userController")
 const {updateuser} = require("../Controllers/userController")
+const {creatmovie} = require("../Controllers/movieController")
 
 const usertable = [
     {"name":"avirup",email:"avirup@gmail.com", password:"Asirup@1999"},
@@ -72,4 +73,7 @@ app.delete("/api/food/delete/:id",async(req,res)=>{
     const stages = await  client.client.db("Store").collection("Food").deleteOne({_id:ObjectId(`${id}`)});
     return res.send({message:"deleted"})
 })
+
+
+app.post("/api/movie/create",creatmovie)
 module.exports = app;
