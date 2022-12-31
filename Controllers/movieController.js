@@ -18,7 +18,7 @@ const creatmovie = async(req,res,next)=>{
 const updatemovie = async(req,res,next)=>{
     const id = req.params.id;
     const {name,director} = req.body;
-    console.log(id)
+    console.log("The id os",id)
     if(!name && !director){
         res.status(401).send({message:"not available"})
     }
