@@ -5,7 +5,7 @@ const app = Router()
 app.use(bodyParser.json());
 const client = require("../migrations/connect")
 // const UserControll = require("../Controllers/userController")
-const {getusers} = require("../Controllers/userController")
+const {getusers, getUserByid} = require("../Controllers/userController")
 const {getfood} = require("../Controllers/foodController")
 const {creatfood} = require("../Controllers/foodController")
 const {updatefood} = require("../Controllers/foodController")
@@ -14,6 +14,9 @@ const {updateuser} = require("../Controllers/userController")
 const {creatmovie} = require("../Controllers/movieController")
 const {updatemovie} = require("../Controllers/movieController")
 const {getmovies} = require("../Controllers/movieController")
+const {elf} = require("../Controllers/userController");
+const { validatorforRegister } = require("../middlewires/validatoor-middlewire");
+const { generateWebToken, verifyWebToken } = require("../middlewires/token-middleware");
 const usertable = [
     {"name":"avirup",email:"avirup@gmail.com", password:"Asirup@1999"},
     {"name":"Shankhadeep",email:"Shankha@gmai.com",password:"ERD@1999" }
@@ -24,8 +27,8 @@ const name_table =[
     {"Name": "Per_3"}
 ]
 const dbName = "Store"
-app.get("/api/user",getusers)
-app.get("/api/food",getfood)
+app.get("/api/user",[verifyWebToken,getusers])
+app.get("/api/food",[verifyWebToken,getfood])
 
 app.get("/api/user/:id",async(req,res,next)=>{
     const id = req.params.id
@@ -35,7 +38,7 @@ app.get("/api/user/:id",async(req,res,next)=>{
 })
 
 
-
+app.post("/api/elf",[elf,getusers])
 app.get("/api/items",async(req,res,next)=>{
     client.connectToDatabase()
     const stages = await client.client.db("Store").collection("Items").find().toArray();
@@ -50,7 +53,8 @@ app.get("/api/name",async(req,res,next)=>{
 
 
 
-app.post("/api/user/create",creatuser)
+app.post("/api/user/create",[validatorforRegister,creatuser,generateWebToken,getUserByid])
+app.post("/api/user/login",[validatorforRegister,creatuser,generateWebToken,getUserByid])
 
 
 app.post("/api/food/create",creatfood)
