@@ -35,7 +35,14 @@ const loginuser = async (req, res, next) => {
     const { name, password } = req.data || {};
     console.log(req.data)
     client.connectToDatabase()
-    const user = await client.client.db("Store").collection("User").findOne({ name, password })
+    const userfind = await client.client.db("Store").collection("User").findOne({ name })
+    let user = {};
+    if (!userfind) {
+        user = await client.client.db("Store").collection("User").insertOne({ name, password })
+
+    } else {
+        res.status(200).send({ "msg": "recordd already exists..." })
+    }
     console.log(user)
     req.id = user.insertedId
     next()
@@ -76,7 +83,7 @@ const updateuser = async (req, res) => {
 }
 
 
-module.exports = { updateuser, creatuser, getusers, elf, getUserByid }
+module.exports = { updateuser, loginuser, creatuser, getusers, elf, getUserByid }
 
 // module.exports={creatuser}
 
