@@ -13,7 +13,7 @@ const getUserByid = async (req, res, next) => {
     console.log("The id is", id)
     const stages = await client.client.db("Store").collection("User").findOne({ _id: id });
     console.log(stages)
-    res.status(200).send({ "msg": "added successfully", data: stages, token: token })
+    res.status(200).send({ "msg": "added successfully", data: stages, token: token,success:true })
 }
 const creatuser = async (req, res, next) => {
     const { name, password } = req.data || {};
