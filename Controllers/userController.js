@@ -38,10 +38,12 @@ const loginuser = async (req, res, next) => {
     const userfind = await client.client.db("Store").collection("User").findOne({ name })
     let user = {};
     if (!userfind) {
-        user = await client.client.db("Store").collection("User").findOne({ name, password })
+        
+     user = await client.client.db("Store").collection("User").findOne({ name, password })
+
 
     } else {
-        res.status(200).send({ "msg": "recordd already exists..." })
+        res.status(200).send({ "msg": "record doesnt exists,please signup...",success:false })
     }
     console.log(user)
     req.id = user.insertedId
